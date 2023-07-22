@@ -1,0 +1,37 @@
+project_name := "{{cookiecutter.project_name}}"
+image_name := "{{cookiecutter.image_name}}"
+
+run: ## Run the app
+	go run cmd/{{cookiecutter.project_name}}.go
+
+{% raw -%}
+tidy: ## Generate go.mod & go.sum files
+	go mod tidy
+
+clean: ## Clean packages
+	go clean -modcache
+
+build: ## Generate docker image
+	podman build -t {{image_name}} .
+
+build-no-cache: ## Generate docker image with no cache
+	podman build --no-cache -t {{image_name}} .
+
+up: ## Run local container in background
+	just delete-container-if-exist
+	podman run -d -p 3000:3000 --name {{project_name}} {{image_name}} ./app
+
+up-prefork: ## Run local container in background with prefork
+	just delete-container-if-exist
+	podman run -d -p 3000:3000 --name {{project_name}} {{image_name}} ./app -prod
+
+delete-container-if-exist: ## Delete container if it exists
+	podman stop {{project_name}} || true && podman rm {{project_name}} || true
+
+stop: ## Stop the container
+	podman stop {{project_name}}
+
+start: ## Start the container
+	podman start {{project_name}}
+
+{%- endraw %}
