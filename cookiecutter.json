@@ -1,5 +1,5 @@
 {
   "project_name": "fiber-optic",
-  "module_path": "git.cesium.pw/niku/optic-fiber",
+  "module_path": "git.cesium.pw/niku/fiber-optic",
   "image_name": "{{cookiecutter.project_name}}"
 }
