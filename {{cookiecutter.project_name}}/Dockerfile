@@ -1,5 +1,5 @@
 # Building the binary of the App
-FROM docker.io/golang:1.19 AS build
+FROM docker.io/golang:1.20 AS build
 
 WORKDIR /go/src/{{cookiecutter.project_name}}
 
