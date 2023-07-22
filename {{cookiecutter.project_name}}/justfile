@@ -2,7 +2,7 @@ project_name := "{{cookiecutter.project_name}}"
 image_name := "{{cookiecutter.image_name}}"
 
 run: ## Run the app
-	go run cmd/{{cookiecutter.project_name}}.go
+	go run cmd/{{cookiecutter.project_name}}/main.go
 
 {% raw -%}
 tidy: ## Generate go.mod & go.sum files
