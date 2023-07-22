@@ -3,6 +3,7 @@ package app
 import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/compress"
+	"github.com/gofiber/fiber/v2/middleware/helmet"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"{{cookiecutter.module_path}}/internal/app/api"
 )
@@ -12,6 +13,7 @@ func Run() error {
 
 	app.Use(logger.New())
 	app.Use(compress.New())
+	app.Use(helmet.New())
 
 	api.ConfigureRoutes(app)
 
