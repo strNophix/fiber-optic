@@ -5,6 +5,8 @@ GO_PACKAGES = [
 ]
 
 def main() -> int:
+    subprocess.run(["git", "init"])
+
     for package in GO_PACKAGES:
         subprocess.run(["go", "get", "-u", package])
     return 0
