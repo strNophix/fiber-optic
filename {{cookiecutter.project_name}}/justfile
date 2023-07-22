@@ -34,4 +34,7 @@ stop: ## Stop the container
 start: ## Start the container
 	podman start {{project_name}}
 
+swagger: ## Generate swagger documentation
+	swag init -d internal/app
+
 {%- endraw %}

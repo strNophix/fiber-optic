@@ -1,14 +1,25 @@
-import subprocess
+from subprocess import run
 
 GO_PACKAGES = [
-    "github.com/gofiber/fiber/v2"
+    "github.com/gofiber/fiber/v2",
+    "github.com/gofiber/swagger",
+]
+
+GO_INSTALL = [
+    "github.com/swaggo/swag/cmd/swag@latest"
 ]
 
 def main() -> int:
-    subprocess.run(["git", "init"])
+    run(["git", "init"])
 
     for package in GO_PACKAGES:
-        subprocess.run(["go", "get", "-u", package])
+        run(["go", "get", "-u", package])
+
+    for package in GO_INSTALL:
+        run(["go", "install", package])
+
+    run(["swag", "init", "-d", "internal/app"])
+
     return 0
 
 if __name__ == "__main__":
